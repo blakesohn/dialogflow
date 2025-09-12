@@ -1,5 +1,5 @@
 const CONFIG = {
   PROJECT_ID: "YOUR_PROJECT_ID",
-  AGENT_ID: "YOUR_AGENT_ID", 
-  TOOL_ID: "YOUR_TOOL_ID"
+  AGENT_ID: "YOUR_AGENT_ID", // e.g. a1111bcd-567d-89e0-1f11-f1ab11aa1aa1
+  TOOL_ID: "YOUR_TOOL_ID". // e.g. projects/{PROJECT_ID}/locations/us-central1/agents/{AGENT_ID}/tools/aaa1b1cc-1a1a-1111-111a-a11a11aa01a1
 };
