@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cymbal Hotel - Special Packages</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .header {
+            background-color: #00527b;
+            color: white;
+            padding: 20px 40px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .package-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        .package-card:hover {
+            transform: translateY(-5px);
+        }
+        .package-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .package-content {
+            padding: 20px;
+        }
+        .package-content h2 {
+            color: #00527b;
+            margin-top: 0;
+        }
+        .package-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        .package-content ul li {
+            padding: 5px 0;
+        }
+        .package-content ul li::before {
+            content: '✓';
+            color: #28a745;
+            margin-right: 10px;
+        }
+        .book-now {
+            display: inline-block;
+            background-color: #ffc107;
+            color: #333;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Cymbal Hotel Packages</h1>
+        <p>Exclusive offers for your perfect stay</p>
+    </div>
+
+    <div class="container">
+        <div class="package-grid">
+            <div class="package-card">
+                <img src="images/hotel_img1.png" alt="Luxury room with a city view">
+                <div class="package-content">
+                    <h2>Romantic Getaway</h2>
+                    <p>A perfect escape for two. Enjoy luxury and create unforgettable memories.</p>
+                    <ul>
+                        <li>2-night stay in a Deluxe Suite</li>
+                        <li>Welcome champagne & chocolates</li>
+                        <li>Romantic dinner for two</li>
+                        <li>Couples' spa treatment</li>
+                        <li>Late check-out at 2 PM</li>
+                    </ul>
+                    <a href="#" class="book-now">Book Now</a>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <img src="images/hotel_img2.png" alt="Family enjoying the hotel pool">
+                <div class="package-content">
+                    <h2>Family Fun Package</h2>
+                    <p>Everything your family needs for a fun-filled and relaxing holiday.</p>
+                    <ul>
+                        <li>3-night stay in a Family Room</li>
+                        <li>Daily breakfast buffet</li>
+                        <li>Tickets to a local theme park</li>
+                        <li>Access to Kids' Club</li>
+                        <li>Evening movie night with popcorn</li>
+                    </ul>
+                    <a href="#" class="book-now">Book Now</a>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <img src="images/hotel_img3.png" alt="Business professional working in a hotel lounge">
+                <div class="package-content">
+                    <h2>Business Traveler</h2>
+                    <p>Stay productive and relaxed on your next business trip.</p>
+                    <ul>
+                        <li>1-night stay in an Executive Room</li>
+                        <li>High-speed Wi-Fi</li>
+                        <li>2-hour meeting room access</li>
+                        <li>Airport shuttle service</li>
+                        <li>Complimentary laundry service</li>
+                    </ul>
+                    <a href="#" class="book-now">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

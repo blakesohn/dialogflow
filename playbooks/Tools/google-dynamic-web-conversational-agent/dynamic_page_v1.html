@@ -1,0 +1,126 @@
+<html>
+  <head>
+   <title>Demo</title>
+    
+    <style>
+      #webpage-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: calc(100% - 500px);
+        height: 100%;
+        border: none;
+        display: none;
+      }
+    </style>
+    <script src="config.js"></script>
+  </head>
+  <body>
+<!-- Widget JavaScript bundle -->
+<script src="https://cloud.google.com/ai/gen-app-builder/client?hl=en_US"></script>
+
+<img id="background-image" src="./images/hotel_img1.png" alt="background" width="100%" height="100%">
+<iframe id="webpage-container"></iframe>
+
+<link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+
+<df-messenger
+  location="us-central1"
+  language-code="ko"
+  max-query-length="-1"
+  allow-feedback="all">
+  <df-messenger-chat
+    enable-audio-input
+    bot-writing-text="..."
+    bot-actor-image="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Google_Bard_logo.svg/2048px-Google_Bard_logo.svg.png"
+    user-actor-image="https://img.freepik.com/premium-vector/user-icon-avatar-user-profile-person-icon-gender-neutral-silhouette-profile-picture-suitable_697711-1132.jpg"
+    chat-title-icon="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Google_Bard_logo.svg/2048px-Google_Bard_logo.svg.png"
+    chat-title="Dynamic Rendering Demo">
+    <df-reset-session-button
+    slot="titlebar-actions"
+    title-text="Start new session"
+    ></df-reset-session-button>
+  </df-messenger-chat>
+</df-messenger>
+
+<script>
+  const dfMessenger = document.querySelector('df-messenger');
+  dfMessenger.projectId = CONFIG.PROJECT_ID;
+  dfMessenger.agentId = CONFIG.AGENT_ID;
+
+  async function renderWebpage(input) {
+    console.log("Calling renderWebpage with intent:", input)
+    if (input.intent === "hotel packages") {
+      console.log("Showing `hotel packages` intent")
+      const iframe = document.getElementById('webpage-container');
+      const backgroundImage = document.getElementById('background-image');
+
+      iframe.src = "hotel_package.html";
+      iframe.style.display = 'block';
+      backgroundImage.style.display = 'none';
+    } else if (input.intent === "travel miles") {
+      console.log("Showing `travel mile` intent")
+      const iframe = document.getElementById('webpage-container');
+      const backgroundImage = document.getElementById('background-image');
+
+      iframe.src = "krisflyer.html";
+      iframe.style.display = 'block';
+      backgroundImage.style.display = 'none';
+    }
+    return Promise.resolve({})
+  }
+
+  // Register the tool
+  const toolId = CONFIG.TOOL_ID;
+  dfMessenger.registerClientSideFunction(toolId, "call-web-client", renderWebpage)
+</script>
+
+<script>
+function setDialogflowParameters(parameters) {
+    const dfMessengerElement = document.querySelector('df-messenger');
+    if (!dfMessengerElement) {
+      console.error('df-messenger element not found.');
+      return;
+    }
+    const queryParameters = {
+      parameters: parameters,
+    };
+    dfMessengerElement.setQueryParameters(queryParameters);
+    console.log('Query parameters set:', queryParameters);
+  }
+
+  window.addEventListener('df-response-received', (event) => {
+    // 이벤트 상세 정보에서 원본(raw) 응답 데이터를 가져옵니다.
+    const rawResponse = event.detail.raw;
+    let sessionId ='';
+
+    // 원본 응답 데이터에서 diagnosticInfo 객체와 sessionId를 확인합니다.
+    // 첨부된 스크린샷에 따르면 Session ID는 diagnosticInfo.sessionId 경로에 있습니다.
+    if (rawResponse && rawResponse.queryResult.diagnosticInfo && rawResponse.queryResult.diagnosticInfo['Session Id']) {
+      sessionId = rawResponse.queryResult.diagnosticInfo['Session Id'];
+      console.log('Detected Session ID:', sessionId);
+    } else {
+      // Session ID를 찾지 못한 경우 콘솔에 메시지를 출력합니다.
+      console.log('Session ID를 찾을 수 없습니다. 응답 구조를 확인하세요.', rawResponse);
+    }
+    const myParameters = {
+        session_id: sessionId
+    };
+    setDialogflowParameters(myParameters);
+});
+
+</script>
+  <style>
+    df-messenger {
+      z-index: 999;
+      position: fixed;
+      bottom: 0px;
+      right: 0px;
+      top: 0;
+      width: 500px;
+    }
+  </style>
+
+  </body>
+</html>
