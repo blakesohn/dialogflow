@@ -1,0 +1,6 @@
+google-cloud-dialogflow-cx
+google-cloud-texttospeech>=2.29.0
+python-dotenv
+pyaudio
+sounddevice
+soundfile
